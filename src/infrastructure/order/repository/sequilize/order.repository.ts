@@ -1,9 +1,10 @@
 import Order from "../../../../domain/order/entity/order";
 import OrderItem from "../../../../domain/order/entity/order_item";
+import OrderRepositoryInterface from "../../../../domain/order/repository/order-repository.interface";
 import OrderItemModel from "./order-item.model";
 import OrderModel from "./order.model";
 
-export default class OrderRepository {
+export default class OrderRepository implements OrderRepositoryInterface{
   async create(entity: Order): Promise<void> {
     await OrderModel.create(
       {
@@ -23,33 +24,6 @@ export default class OrderRepository {
       }
     );
   }
-  
-  // async update(entity: Order): Promise<void> {
-    
-  //   logging: console.log();
-
-  //   const sequelize = OrderModel.sequelize;
-    
-  //   await OrderModel.update(
-  //     {
-  //       customer_id: entity.customerId,
-  //       total: entity.total(),
-  //       items: entity.items.map((item) => ({
-  //         id: "2",
-  //         product_id: item.productId,
-  //         quantity: item.quantity,
-  //         name: item.name,
-  //         price: item.price
-  //       })),
-  //     },
-  //     {
-  //       where: {
-  //         id: entity.id,
-  //       },
-  //     }
-  //   );
-  // }
-
 
   async update(entity: Order): Promise<void> {
     const sequelize = OrderModel.sequelize;
